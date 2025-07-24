@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro ifce</title>
+
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            border: 5px rgb(142, 135, 135);
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            padding: 4rem;
+            border-radius: 8px;
+            max-width: 28rem;
+            font-family: sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            background: #81259d;
+            font-family: sans-serif;
+            display: grid;
+            place-items: center;
+        }
+        .button{
+            background: #81259d;
+            color: white;
+            outline: #81259d;
+            border: 1px solid;
+            line-height: 2rem;
+            font-weight: 700;
+            width: 100%;
+            padding: 0.4rem 0.4rem;
+            border-radius: 4px;
+        }
+        .button:hover{
+            background-color: #b406e8;
+            cursor: pointer;
+        }
+        h2{
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            color: #81259d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+    <h2>GERENCIAMENTO DE ITENS</h2>
+    <form action="cadastro.php" method="post">
+        <label for="itens">Nome do item: </label><br>
+        <select name="itens" id="itens">
+            <option value="Cabo-teste">Cabo teste</option>
+            <option value="Data-show-teste">Data show</option>
+            <option value="Notebook-teste">Notebook Asus</option>
+
+            <?php
+              if($result->num_rows > 0){
+                while($linha = $result->fetch_assoc()){
+                    echo "option value='" .$linha['id']
+                }else{
+                    echo "<option value=''>Nenhuma tabela</option>";
+                }
+              }
+            ?>
+        </select><br><br>
+
+
+        <label for="nome_professor">Nome do Professor</label><br>
+        <input type="text" id="nome_professor" name="nome_professor" required><br><br>
+
+        <label for="data">Data de saída:</label>
+        <input type="date" id="data" name="data" required><br><br>
+
+        <input type="submit" class="button">
+    </form>
+
+    </div>
+</body>
+</html>
